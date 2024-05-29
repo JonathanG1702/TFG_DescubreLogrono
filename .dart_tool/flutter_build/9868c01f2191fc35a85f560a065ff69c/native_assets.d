@@ -1,0 +1,1 @@
+ C:\\dev\\descubre_logrono\\.dart_tool\\flutter_build\\9868c01f2191fc35a85f560a065ff69c\\native_assets.yaml: 

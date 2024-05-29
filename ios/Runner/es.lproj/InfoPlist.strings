@@ -1,0 +1,4 @@
+NSLocationWhenInUseUsageDescription = "Permite que te mostremos información relevante cerca de ti";
+NSCameraUsageDescription = "¡Activa la cámara para capturar momentos épicos y compartirlos con el resto de usuarios!";
+PermissionGroupNotification = "¡Recibirás avisos importantes y recordatorios que no se te escaparán!";
+NSPhotoLibraryUsageDescription = "Te permitirá poder subir contenido a la plataforma";

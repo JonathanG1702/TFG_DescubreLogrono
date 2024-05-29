@@ -1,0 +1,1 @@
+ C:\\dev\\TFG_DescubreLogrono\\.dart_tool\\flutter_build\\f7c79285ee0206fe04f7c65f8e8e5dd3\\native_assets.yaml: 
