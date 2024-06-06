@@ -263,6 +263,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'GUIA PINCHOS 2023',
       'en': 'TAPAS GUIDE 2023',
     },
+    'cz3a1u4w': {
+      'es': 'VISUALIZAR',
+      'en': 'VISUALIZE',
+    },
     '2vk29cpk': {
       'es': 'INICIO',
       'en': 'HOME',
