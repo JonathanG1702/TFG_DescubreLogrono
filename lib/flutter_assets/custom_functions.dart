@@ -4,16 +4,19 @@ double? autoCalculoResenas(
   double valoracionUsuario,
   bool esNuevaResena,
 ) {
+  double nuevaValoracion;
+
   if (esNuevaResena) {
-    // Si se cumple la condición, añadir la nueva valoración
-    return ((valoracionMedia * cantResenas) + valoracionUsuario) /
+    nuevaValoracion =  ((valoracionMedia * cantResenas) + valoracionUsuario) /
         (cantResenas + 1);
+  } else {
+    if(cantResenas - 1 <= 0) return 0;
+    nuevaValoracion = ((valoracionMedia * cantResenas) - valoracionUsuario) /
+        (cantResenas - 1);
   }
 
-  if (cantResenas <= 1) return 0;
-  // Si no se cumple la condición, restar la nueva valoración
-  return ((valoracionMedia * cantResenas) - valoracionUsuario) /
-      (cantResenas - 1);
+  return double.parse(nuevaValoracion.toStringAsFixed(2));
+
 }
 
 int actualizarNumResenas(
