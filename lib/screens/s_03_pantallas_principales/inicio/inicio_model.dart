@@ -5,12 +5,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class InicioModel extends FlutterFlowModel<InicioWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - Query Rows] action in inicio widget.
+ final unfocusNode = FocusNode();
   List<DatosUsuariosAppRow>? existeUsuario;
-  // State field(s) for Carousel widget.
   CarouselController? carouselController;
 
   int carouselCurrentIndex = 1;

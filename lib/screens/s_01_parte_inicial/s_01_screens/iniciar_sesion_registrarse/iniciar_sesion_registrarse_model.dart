@@ -127,9 +127,7 @@ class IniciarSesionRegistrarseModel
       );
     }
 
-    if (!RegExp(
-            '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_])[A-Za-z\\d\\W_]{10,}\$/')
-        .hasMatch(val)) {
+    if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*$').hasMatch(val)) {
       return FFLocalizations.of(context).getText(
         'bphe76kg' /* El formato no cumple con requi... */,
       );
@@ -157,9 +155,7 @@ class IniciarSesionRegistrarseModel
       );
     }
 
-    if (!RegExp(
-            '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_])[A-Za-z\\d\\W_]{10,}\$/')
-        .hasMatch(val)) {
+    if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*$').hasMatch(val)) {
       return FFLocalizations.of(context).getText(
         '364d1rcc' /* El formato no cumple con requi... */,
       );
