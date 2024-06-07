@@ -10,7 +10,9 @@ import '/flutter_assets/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'seleccionar_cuenta_model.dart';
 export 'seleccionar_cuenta_model.dart';
 
@@ -42,13 +44,13 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
             elevation: 0,
             insetPadding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            alignment: const AlignmentDirectional(0.0, 0.0)
-                .resolve(Directionality.of(context)),
+            alignment:
+            AlignmentDirectional(0, 0).resolve(Directionality.of(context)),
             child: GestureDetector(
               onTap: () => _model.unfocusNode.canRequestFocus
                   ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                   : FocusScope.of(context).unfocus(),
-              child: const AvisoCargandoWidget(),
+              child: AvisoCargandoWidget(),
             ),
           );
         },
@@ -59,9 +61,9 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
           _model.cuentasUsuario = await CuentasUsuariosAppTable().queryRows(
             queryFn: (q) => q
                 .eq(
-                  'id_usuario',
-                  FFAppState().idUsuarioLogado,
-                )
+              'id_usuario',
+              FFAppState().idUsuarioLogado,
+            )
                 .order('cuenta_verificada'),
           );
           _model.cantCuentasUsuario = valueOrDefault<int>(
@@ -73,9 +75,9 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
           _model.cuentasNegocio = await CuentasNegociosAppTable().queryRows(
             queryFn: (q) => q
                 .eq(
-                  'id_usuario_propietario',
-                  FFAppState().idUsuarioLogado,
-                )
+              'id_usuario_propietario',
+              FFAppState().idUsuarioLogado,
+            )
                 .order('id_cuenta'),
           );
           _model.cantCuentasNegocios = valueOrDefault<int>(
@@ -91,22 +93,22 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
             ),
           );
           _model.infoSuscripcionUsuario =
-              await TipoSuscripcionTable().queryRows(
+          await TipoSuscripcionTable().queryRows(
             queryFn: (q) => q.eq(
               'id_tipo_suscripcion',
-              _model.datosUsuarioBd?.first.idTipoSuscripcion,
+              _model.datosUsuarioBd?.first?.idTipoSuscripcion,
             ),
           );
           await Future.wait([
             Future(() async {
               _model.maxCuentasUsuario = valueOrDefault<int>(
-                _model.infoSuscripcionUsuario?.first.maxUsuarios,
+                _model.infoSuscripcionUsuario?.first?.maxUsuarios,
                 0,
               );
             }),
             Future(() async {
               _model.maxCuentasNegocio = valueOrDefault<int>(
-                _model.infoSuscripcionUsuario?.first.maxNegocios,
+                _model.infoSuscripcionUsuario?.first?.maxNegocios,
                 0,
               );
             }),
@@ -147,12 +149,12 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                   top: true,
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(
-                        0.0,
+                        0,
                         valueOrDefault<double>(
                           MediaQuery.sizeOf(context).height * 0.052083,
                           50.0,
                         ),
-                        0.0,
+                        0,
                         valueOrDefault<double>(
                           MediaQuery.sizeOf(context).height * 0.0260416,
                           25.0,
@@ -165,7 +167,7 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                         wrapWithModel(
                           model: _model.cabeceraInfoApp02Model,
                           updateCallback: () => setState(() {}),
-                          child: const CabeceraInfoApp02Widget(),
+                          child: CabeceraInfoApp02Widget(),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -173,20 +175,20 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                 MediaQuery.sizeOf(context).width * 0.120,
                                 50.0,
                               ),
-                              0.0,
+                              0,
                               valueOrDefault<double>(
                                 MediaQuery.sizeOf(context).width * 0.120,
                                 50.0,
                               ),
-                              0.0),
+                              0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0,
-                                    0.0,
-                                    0.0,
+                                    0,
+                                    0,
+                                    0,
                                     valueOrDefault<double>(
                                       MediaQuery.sizeOf(context).height * 0.02,
                                       20.0,
@@ -199,32 +201,32 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: valueOrDefault<double>(
-                                          MediaQuery.sizeOf(context).height *
-                                              0.015625,
-                                          15.0,
-                                        ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: valueOrDefault<double>(
+                                      MediaQuery.sizeOf(context).height *
+                                          0.015625,
+                                      15.0,
+                                    ),
+                                    letterSpacing: 0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .verdeCustom,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(0.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(15.0),
-                                        topRight: Radius.circular(15.0),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15),
                                       ),
                                     ),
                                     child: Padding(
@@ -252,7 +254,7 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -260,11 +262,11 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                               Icon(
                                                 Icons.person,
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
                                                 size: valueOrDefault<double>(
                                                   MediaQuery.sizeOf(context)
-                                                          .height *
+                                                      .height *
                                                       0.026041,
                                                   25.0,
                                                 ),
@@ -276,29 +278,29 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 ),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
-                                                        context)
+                                                    context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      fontSize: valueOrDefault<
-                                                          double>(
-                                                        MediaQuery.sizeOf(
-                                                                    context)
-                                                                .height *
-                                                            0.015625,
-                                                        15.0,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: valueOrDefault<
+                                                      double>(
+                                                    MediaQuery.sizeOf(
+                                                        context)
+                                                        .height *
+                                                        0.015625,
+                                                    15.0,
+                                                  ),
+                                                  letterSpacing: 0,
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
                                               ),
                                             ].divide(SizedBox(
                                                 width: valueOrDefault<double>(
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.01216,
-                                              5.0,
-                                            ))),
+                                                  MediaQuery.sizeOf(context).width *
+                                                      0.01216,
+                                                  5.0,
+                                                ))),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -315,52 +317,52 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 )}',
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
-                                                        context)
+                                                    context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      fontSize: valueOrDefault<
-                                                          double>(
-                                                        MediaQuery.sizeOf(
-                                                                    context)
-                                                                .height *
-                                                            0.015625,
-                                                        15.0,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: valueOrDefault<
+                                                      double>(
+                                                    MediaQuery.sizeOf(
+                                                        context)
+                                                        .height *
+                                                        0.015625,
+                                                    15.0,
+                                                  ),
+                                                  letterSpacing: 0,
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
                                               ),
                                               if (_model.cantCuentasUsuario! <
                                                   valueOrDefault<int>(
                                                     _model
                                                         .infoSuscripcionUsuario
                                                         ?.first
-                                                        .maxUsuarios,
+                                                        ?.maxUsuarios,
                                                     1,
                                                   ))
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          valueOrDefault<
-                                                              double>(
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                0.02433,
-                                                            10.0,
-                                                          ),
-                                                          0.0,
-                                                          0.0,
-                                                          0.0),
+                                                      valueOrDefault<
+                                                          double>(
+                                                        MediaQuery.sizeOf(
+                                                            context)
+                                                            .width *
+                                                            0.02433,
+                                                        10.0,
+                                                      ),
+                                                      0,
+                                                      0,
+                                                      0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       context.goNamed(
                                                           'completarDatosUsuario');
                                                     },
                                                     text: FFLocalizations.of(
-                                                            context)
+                                                        context)
                                                         .getText(
                                                       'qfyaxxjl' /* CREAR */,
                                                     ),
@@ -368,150 +370,144 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                       height: valueOrDefault<
                                                           double>(
                                                         MediaQuery.sizeOf(
-                                                                    context)
-                                                                .height *
+                                                            context)
+                                                            .height *
                                                             0.03125,
                                                         30.0,
                                                       ),
                                                       padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          10, 0, 10, 0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          0, 0, 0, 0),
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .primary,
                                                       textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                                fontSize:
-                                                                    valueOrDefault<
-                                                                        double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.015625,
-                                                                  15.0,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .titleSmall
+                                                          .override(
+                                                        fontFamily:
+                                                        'Readex Pro',
+                                                        color: FlutterFlowTheme.of(
+                                                            context)
+                                                            .secondary,
+                                                        fontSize:
+                                                        valueOrDefault<
+                                                            double>(
+                                                          MediaQuery.sizeOf(
+                                                              context)
+                                                              .height *
+                                                              0.015625,
+                                                          15.0,
+                                                        ),
+                                                        letterSpacing:
+                                                        0,
+                                                      ),
+                                                      elevation: 3,
+                                                      borderSide: BorderSide(
                                                         color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
+                                                        Colors.transparent,
+                                                        width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10),
                                                     ),
                                                   ),
                                                 ),
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: const EdgeInsets.all(5.0),
+                                                  padding: EdgeInsets.all(5),
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
                                                       'wmczsgij' /* Para poder crear un nuevo usua... */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
-                                                            context)
+                                                        context)
                                                         .bodyLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize:
-                                                              valueOrDefault<
-                                                                  double>(
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                0.015625,
-                                                            15.0,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      fontSize:
+                                                      valueOrDefault<
+                                                          double>(
+                                                        MediaQuery.sizeOf(
+                                                            context)
+                                                            .height *
+                                                            0.015625,
+                                                        15.0,
+                                                      ),
+                                                      letterSpacing: 0,
+                                                    ),
                                                   ),
                                                 ),
-                                                offset: 5.0,
+                                                offset: 5,
                                                 preferredDirection:
-                                                    AxisDirection.down,
+                                                AxisDirection.down,
                                                 borderRadius:
-                                                    BorderRadius.circular(10.0),
+                                                BorderRadius.circular(10),
                                                 backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                elevation: 5.0,
-                                                tailBaseWidth: 25.0,
-                                                tailLength: 10.0,
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                                elevation: 5,
+                                                tailBaseWidth: 25,
+                                                tailLength: 10,
                                                 waitDuration:
-                                                    const Duration(milliseconds: 100),
-                                                showDuration: const Duration(
+                                                Duration(milliseconds: 100),
+                                                showDuration: Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
-                                                    TooltipTriggerMode.tap,
+                                                TooltipTriggerMode.tap,
                                                 child: Visibility(
                                                   visible: _model
-                                                          .cantCuentasUsuario! >=
+                                                      .cantCuentasUsuario! >=
                                                       _model.maxCuentasUsuario!,
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      0.02433,
-                                                                  10.0,
-                                                                ),
-                                                                0.0,
-                                                                0.0,
-                                                                0.0),
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                        valueOrDefault<
+                                                            double>(
+                                                          MediaQuery.sizeOf(
+                                                              context)
+                                                              .width *
+                                                              0.02433,
+                                                          10.0,
+                                                        ),
+                                                        0,
+                                                        0,
+                                                        0),
                                                     child: InkWell(
                                                       splashColor:
-                                                          Colors.transparent,
+                                                      Colors.transparent,
                                                       focusColor:
-                                                          Colors.transparent,
+                                                      Colors.transparent,
                                                       hoverColor:
-                                                          Colors.transparent,
+                                                      Colors.transparent,
                                                       highlightColor:
-                                                          Colors.transparent,
+                                                      Colors.transparent,
                                                       onTap: () async {
-                                                        context.pushNamed(
+                                                        context.goNamed(
                                                             'seleccionar_TipoPlan');
                                                       },
                                                       child: Icon(
                                                         Icons.monetization_on,
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                                        FlutterFlowTheme.of(
+                                                            context)
+                                                            .primary,
                                                         size: valueOrDefault<
                                                             double>(
                                                           MediaQuery.sizeOf(
-                                                                      context)
-                                                                  .height *
+                                                              context)
+                                                              .height *
                                                               0.03125,
                                                           30.0,
                                                         ),
@@ -532,7 +528,7 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                           0.2135416,
                                       205.0,
                                     ),
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: SingleChildScrollView(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -540,13 +536,13 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                           Builder(
                                             builder: (context) {
                                               final datosCuentasUsuario = _model
-                                                      .cuentasUsuario
-                                                      ?.toList() ??
+                                                  .cuentasUsuario
+                                                  ?.toList() ??
                                                   [];
                                               if (datosCuentasUsuario.isEmpty) {
-                                                return const Center(
+                                                return Center(
                                                   child:
-                                                      NoPoseeCuentaUsuarioWidget(),
+                                                  NoPoseeCuentaUsuarioWidget(),
                                                 );
                                               }
                                               return ListView.separated(
@@ -554,14 +550,14 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                   0,
                                                   valueOrDefault<double>(
                                                     MediaQuery.sizeOf(context)
-                                                            .height *
+                                                        .height *
                                                         0.010416,
                                                     10.0,
                                                   ),
                                                   0,
                                                   valueOrDefault<double>(
                                                     MediaQuery.sizeOf(context)
-                                                            .height *
+                                                        .height *
                                                         0.010416,
                                                     10.0,
                                                   ),
@@ -569,119 +565,119 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
                                                 itemCount:
-                                                    datosCuentasUsuario.length,
+                                                datosCuentasUsuario.length,
                                                 separatorBuilder: (_, __) =>
                                                     SizedBox(
                                                         height: valueOrDefault<
                                                             double>(
-                                                  MediaQuery.sizeOf(context)
-                                                          .height *
-                                                      0.010416,
-                                                  10.0,
-                                                )),
+                                                          MediaQuery.sizeOf(context)
+                                                              .height *
+                                                              0.010416,
+                                                          10.0,
+                                                        )),
                                                 itemBuilder: (context,
                                                     datosCuentasUsuarioIndex) {
                                                   final datosCuentasUsuarioItem =
-                                                      datosCuentasUsuario[
-                                                          datosCuentasUsuarioIndex];
+                                                  datosCuentasUsuario[
+                                                  datosCuentasUsuarioIndex];
                                                   return InkWell(
                                                     splashColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     focusColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     hoverColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     highlightColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     onTap: () async {
                                                       FFAppState()
-                                                              .idCuentaLogada =
+                                                          .idCuentaLogada =
                                                           valueOrDefault<
                                                               String>(
-                                                        datosCuentasUsuarioItem
-                                                            .idCuenta,
-                                                        'https://vaswgtvmlhgkurwrlxiz.supabase.co/storage/v1/object/public/logos_cuentas_usuarios/logos_base_app/logo_usuario_base.png',
-                                                      );
+                                                            datosCuentasUsuarioItem
+                                                                .idCuenta,
+                                                            'https://vaswgtvmlhgkurwrlxiz.supabase.co/storage/v1/object/public/logos_cuentas_usuarios/logos_base_app/logo_usuario_base.png',
+                                                          );
 
                                                       context.goNamed('inicio');
                                                     },
                                                     child: Container(
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
-                                                                .of(context)
+                                                            .of(context)
                                                             .secondaryBackground,
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(25.0),
+                                                        BorderRadius
+                                                            .circular(25),
                                                       ),
                                                       child: Padding(
                                                         padding: EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      0.036456,
-                                                                  15.0,
-                                                                ),
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.010416,
-                                                                  10.0,
-                                                                ),
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      0.036456,
-                                                                  15.0,
-                                                                ),
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.010416,
-                                                                  10.0,
-                                                                )),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .width *
+                                                                  0.036456,
+                                                              15.0,
+                                                            ),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .height *
+                                                                  0.010416,
+                                                              10.0,
+                                                            ),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .width *
+                                                                  0.036456,
+                                                              15.0,
+                                                            ),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .height *
+                                                                  0.010416,
+                                                              10.0,
+                                                            )),
                                                         child: Column(
                                                           mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          MainAxisSize.max,
                                                           children: [
                                                             Row(
                                                               mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              MainAxisSize
+                                                                  .max,
                                                               crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                               children: [
                                                                 Container(
                                                                   width:
-                                                                      valueOrDefault<
-                                                                          double>(
+                                                                  valueOrDefault<
+                                                                      double>(
                                                                     MediaQuery.sizeOf(context)
-                                                                            .height *
+                                                                        .height *
                                                                         0.0364583,
                                                                     35.0,
                                                                   ),
                                                                   height:
-                                                                      valueOrDefault<
-                                                                          double>(
+                                                                  valueOrDefault<
+                                                                      double>(
                                                                     MediaQuery.sizeOf(context)
-                                                                            .height *
+                                                                        .height *
                                                                         0.0364583,
                                                                     35.0,
                                                                   ),
                                                                   clipBehavior:
-                                                                      Clip.antiAlias,
+                                                                  Clip.antiAlias,
                                                                   decoration:
-                                                                      const BoxDecoration(
+                                                                  BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -699,16 +695,16 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                                 ),
                                                                 Column(
                                                                   mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  MainAxisSize
+                                                                      .max,
                                                                   crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                                   children: [
                                                                     Row(
                                                                       mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
+                                                                      MainAxisSize
+                                                                          .max,
                                                                       children: [
                                                                         Text(
                                                                           valueOrDefault<
@@ -719,46 +715,46 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
-                                                                                fontFamily: 'Readex Pro',
-                                                                                fontSize: valueOrDefault<double>(
-                                                                                  MediaQuery.sizeOf(context).height * 0.015625,
-                                                                                  15.0,
-                                                                                ),
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
+                                                                            fontFamily: 'Readex Pro',
+                                                                            fontSize: valueOrDefault<double>(
+                                                                              MediaQuery.sizeOf(context).height * 0.015625,
+                                                                              15.0,
+                                                                            ),
+                                                                            letterSpacing: 0,
+                                                                            fontWeight: FontWeight.bold,
+                                                                          ),
                                                                         ),
                                                                         if (datosCuentasUsuarioItem
                                                                             .cuentaVerificada)
                                                                           Icon(
                                                                             Icons.verified_rounded,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            FlutterFlowTheme.of(context).alternate,
                                                                             size:
-                                                                                valueOrDefault<double>(
+                                                                            valueOrDefault<double>(
                                                                               MediaQuery.sizeOf(context).height * 0.026041,
                                                                               25.0,
                                                                             ),
                                                                           ),
                                                                       ].divide(SizedBox(
                                                                           width: valueOrDefault<double>(
-                                                                        MediaQuery.sizeOf(context).width *
-                                                                            0.036496,
-                                                                        15.0,
-                                                                      ))),
+                                                                            MediaQuery.sizeOf(context).width *
+                                                                                0.036496,
+                                                                            15.0,
+                                                                          ))),
                                                                     ),
                                                                   ],
                                                                 ),
                                                               ].divide(SizedBox(
                                                                   width:
-                                                                      valueOrDefault<
-                                                                          double>(
-                                                                MediaQuery.sizeOf(
-                                                                            context)
+                                                                  valueOrDefault<
+                                                                      double>(
+                                                                    MediaQuery.sizeOf(
+                                                                        context)
                                                                         .width *
-                                                                    0.036456,
-                                                                15.0,
-                                                              ))),
+                                                                        0.036456,
+                                                                    15.0,
+                                                                  ))),
                                                             ),
                                                           ],
                                                         ),
@@ -777,11 +773,11 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .rojoCustom,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(0.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(0.0),
-                                        topRight: Radius.circular(0.0),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(0),
+                                        topRight: Radius.circular(0),
                                       ),
                                     ),
                                     child: Padding(
@@ -809,7 +805,7 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -817,11 +813,11 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                               Icon(
                                                 Icons.person,
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
                                                 size: valueOrDefault<double>(
                                                   MediaQuery.sizeOf(context)
-                                                          .height *
+                                                      .height *
                                                       0.0260416,
                                                   25.0,
                                                 ),
@@ -833,29 +829,29 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 ),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
-                                                        context)
+                                                    context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      fontSize: valueOrDefault<
-                                                          double>(
-                                                        MediaQuery.sizeOf(
-                                                                    context)
-                                                                .height *
-                                                            0.015625,
-                                                        15.0,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: valueOrDefault<
+                                                      double>(
+                                                    MediaQuery.sizeOf(
+                                                        context)
+                                                        .height *
+                                                        0.015625,
+                                                    15.0,
+                                                  ),
+                                                  letterSpacing: 0,
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
                                               ),
                                             ].divide(SizedBox(
                                                 width: valueOrDefault<double>(
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.012165,
-                                              5.0,
-                                            ))),
+                                                  MediaQuery.sizeOf(context).width *
+                                                      0.012165,
+                                                  5.0,
+                                                ))),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -872,22 +868,22 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 )}',
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
-                                                        context)
+                                                    context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      fontSize: valueOrDefault<
-                                                          double>(
-                                                        MediaQuery.sizeOf(
-                                                                    context)
-                                                                .height *
-                                                            0.015625,
-                                                        15.0,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: valueOrDefault<
+                                                      double>(
+                                                    MediaQuery.sizeOf(
+                                                        context)
+                                                        .height *
+                                                        0.015625,
+                                                    15.0,
+                                                  ),
+                                                  letterSpacing: 0,
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
                                               ),
                                               if (_model.cantCuentasNegocios! <
                                                   valueOrDefault<int>(
@@ -897,24 +893,24 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          valueOrDefault<
-                                                              double>(
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                0.02433,
-                                                            10.0,
-                                                          ),
-                                                          0.0,
-                                                          0.0,
-                                                          0.0),
+                                                      valueOrDefault<
+                                                          double>(
+                                                        MediaQuery.sizeOf(
+                                                            context)
+                                                            .width *
+                                                            0.02433,
+                                                        10.0,
+                                                      ),
+                                                      0,
+                                                      0,
+                                                      0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       context.goNamed(
                                                           'completarDatosNegocio');
                                                     },
                                                     text: FFLocalizations.of(
-                                                            context)
+                                                        context)
                                                         .getText(
                                                       'q6trun5d' /* CREAR */,
                                                     ),
@@ -922,156 +918,140 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                       height: valueOrDefault<
                                                           double>(
                                                         MediaQuery.sizeOf(
-                                                                    context)
-                                                                .height *
+                                                            context)
+                                                            .height *
                                                             0.03125,
                                                         30.0,
                                                       ),
                                                       padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          10, 0, 10, 0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          0, 0, 0, 0),
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .primary,
                                                       textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize:
-                                                                    valueOrDefault<
-                                                                        double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.015625,
-                                                                  15.0,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .titleSmall
+                                                          .override(
+                                                        fontFamily:
+                                                        'Readex Pro',
+                                                        color: Colors
+                                                            .white,
+                                                        fontSize:
+                                                        valueOrDefault<
+                                                            double>(
+                                                          MediaQuery.sizeOf(
+                                                              context)
+                                                              .height *
+                                                              0.015625,
+                                                          15.0,
+                                                        ),
+                                                        letterSpacing:
+                                                        0,
+                                                      ),
+                                                      elevation: 3,
+                                                      borderSide: BorderSide(
                                                         color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
+                                                        Colors.transparent,
+                                                        width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10),
                                                     ),
                                                   ),
                                                 ),
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: const EdgeInsets.all(5.0),
+                                                  padding: EdgeInsets.all(5),
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
                                                       'otg2scw9' /* Para poder crear un nuevo nego... */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
-                                                            context)
+                                                        context)
                                                         .bodyLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize:
-                                                              valueOrDefault<
-                                                                  double>(
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                0.015625,
-                                                            15.0,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      fontSize:
+                                                      valueOrDefault<
+                                                          double>(
+                                                        MediaQuery.sizeOf(
+                                                            context)
+                                                            .height *
+                                                            0.015625,
+                                                        15.0,
+                                                      ),
+                                                      letterSpacing: 0,
+                                                    ),
                                                   ),
                                                 ),
-                                                offset: 5.0,
+                                                offset: 5,
                                                 preferredDirection:
-                                                    AxisDirection.down,
+                                                AxisDirection.down,
                                                 borderRadius:
-                                                    BorderRadius.circular(10.0),
+                                                BorderRadius.circular(10),
                                                 backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                elevation: 5.0,
-                                                tailBaseWidth: 25.0,
-                                                tailLength: 10.0,
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                                elevation: 5,
+                                                tailBaseWidth: 25,
+                                                tailLength: 10,
                                                 waitDuration:
-                                                    const Duration(milliseconds: 100),
-                                                showDuration: const Duration(
+                                                Duration(milliseconds: 100),
+                                                showDuration: Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
-                                                    TooltipTriggerMode.tap,
-                                                child: Visibility(
-                                                  visible: _model
-                                                          .cantCuentasNegocios! >=
-                                                      valueOrDefault<int>(
-                                                        _model
-                                                            .maxCuentasNegocio,
-                                                        0,
+                                                TooltipTriggerMode.tap,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                      valueOrDefault<
+                                                          double>(
+                                                        MediaQuery.sizeOf(
+                                                            context)
+                                                            .width *
+                                                            0.02433,
+                                                        10.0,
                                                       ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      0.02433,
-                                                                  10.0,
-                                                                ),
-                                                                0.0,
-                                                                0.0,
-                                                                0.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                            'seleccionar_TipoPlan');
-                                                      },
-                                                      child: Icon(
-                                                        Icons.monetization_on,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: valueOrDefault<
-                                                            double>(
-                                                          MediaQuery.sizeOf(
-                                                                      context)
-                                                                  .height *
-                                                              0.03125,
-                                                          30.0,
-                                                        ),
+                                                      0,
+                                                      0,
+                                                      0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                    Colors.transparent,
+                                                    focusColor:
+                                                    Colors.transparent,
+                                                    hoverColor:
+                                                    Colors.transparent,
+                                                    highlightColor:
+                                                    Colors.transparent,
+                                                    onTap: () async {
+                                                      context.goNamed(
+                                                          'seleccionar_TipoPlan');
+                                                    },
+                                                    child: Icon(
+                                                      Icons.monetization_on,
+                                                      color:
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .primary,
+                                                      size: valueOrDefault<
+                                                          double>(
+                                                        MediaQuery.sizeOf(
+                                                            context)
+                                                            .height *
+                                                            0.03125,
+                                                        30.0,
                                                       ),
                                                     ),
                                                   ),
@@ -1086,10 +1066,10 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                   Container(
                                     height: valueOrDefault<double>(
                                       MediaQuery.sizeOf(context).height *
-                                          0.3375,
-                                      324.0,
+                                          0.3489583,
+                                      335.0,
                                     ),
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: SingleChildScrollView(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1097,25 +1077,25 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                           Builder(
                                             builder: (context) {
                                               final datosCuentasNegocio = _model
-                                                      .cuentasNegocio
-                                                      ?.toList() ??
+                                                  .cuentasNegocio
+                                                  ?.toList() ??
                                                   [];
                                               if (datosCuentasNegocio.isEmpty) {
-                                                return const NoPoseeCuentaNegocioWidget();
+                                                return NoPoseeCuentaNegocioWidget();
                                               }
                                               return ListView.separated(
                                                 padding: EdgeInsets.fromLTRB(
                                                   0,
                                                   valueOrDefault<double>(
                                                     MediaQuery.sizeOf(context)
-                                                            .height *
+                                                        .height *
                                                         0.010416,
                                                     10.0,
                                                   ),
                                                   0,
                                                   valueOrDefault<double>(
                                                     MediaQuery.sizeOf(context)
-                                                            .height *
+                                                        .height *
                                                         0.010416,
                                                     10.0,
                                                   ),
@@ -1123,33 +1103,33 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
                                                 itemCount:
-                                                    datosCuentasNegocio.length,
+                                                datosCuentasNegocio.length,
                                                 separatorBuilder: (_, __) =>
                                                     SizedBox(
                                                         height: valueOrDefault<
                                                             double>(
-                                                  MediaQuery.sizeOf(context)
-                                                          .height *
-                                                      0.010416,
-                                                  10.0,
-                                                )),
+                                                          MediaQuery.sizeOf(context)
+                                                              .height *
+                                                              0.010416,
+                                                          10.0,
+                                                        )),
                                                 itemBuilder: (context,
                                                     datosCuentasNegocioIndex) {
                                                   final datosCuentasNegocioItem =
-                                                      datosCuentasNegocio[
-                                                          datosCuentasNegocioIndex];
+                                                  datosCuentasNegocio[
+                                                  datosCuentasNegocioIndex];
                                                   return InkWell(
                                                     splashColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     focusColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     hoverColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     highlightColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     onTap: () async {
                                                       FFAppState()
-                                                              .idCuentaNegocio =
+                                                          .idCuentaNegocio =
                                                           datosCuentasNegocioItem
                                                               .idCuenta;
 
@@ -1157,18 +1137,18 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                         'perfil_negocio',
                                                         queryParameters: {
                                                           'idNegocio':
-                                                              serializeParam(
+                                                          serializeParam(
                                                             datosCuentasNegocioItem
                                                                 .idCuenta,
                                                             ParamType.String,
                                                           ),
                                                           'volverAtras':
-                                                              serializeParam(
+                                                          serializeParam(
                                                             false,
                                                             ParamType.bool,
                                                           ),
                                                           'estaVisualizando':
-                                                              serializeParam(
+                                                          serializeParam(
                                                             false,
                                                             ParamType.bool,
                                                           ),
@@ -1178,83 +1158,83 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                     child: Container(
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
-                                                                .of(context)
+                                                            .of(context)
                                                             .secondaryBackground,
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(25.0),
+                                                        BorderRadius
+                                                            .circular(25),
                                                       ),
                                                       child: Padding(
                                                         padding: EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      0.036496,
-                                                                  15.0,
-                                                                ),
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.010416,
-                                                                  10.0,
-                                                                ),
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      0.036496,
-                                                                  15.0,
-                                                                ),
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.010416,
-                                                                  10.0,
-                                                                )),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .width *
+                                                                  0.036496,
+                                                              15.0,
+                                                            ),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .height *
+                                                                  0.010416,
+                                                              10.0,
+                                                            ),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .width *
+                                                                  0.036496,
+                                                              15.0,
+                                                            ),
+                                                            valueOrDefault<
+                                                                double>(
+                                                              MediaQuery.sizeOf(
+                                                                  context)
+                                                                  .height *
+                                                                  0.010416,
+                                                              10.0,
+                                                            )),
                                                         child: Column(
                                                           mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          MainAxisSize.max,
                                                           mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                          MainAxisAlignment
+                                                              .center,
                                                           children: [
                                                             Row(
                                                               mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              MainAxisSize
+                                                                  .max,
                                                               crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
+                                                              CrossAxisAlignment
+                                                                  .center,
                                                               children: [
                                                                 Container(
                                                                   width:
-                                                                      valueOrDefault<
-                                                                          double>(
+                                                                  valueOrDefault<
+                                                                      double>(
                                                                     MediaQuery.sizeOf(context)
-                                                                            .height *
+                                                                        .height *
                                                                         0.0364583,
                                                                     35.0,
                                                                   ),
                                                                   height:
-                                                                      valueOrDefault<
-                                                                          double>(
+                                                                  valueOrDefault<
+                                                                      double>(
                                                                     MediaQuery.sizeOf(context)
-                                                                            .height *
+                                                                        .height *
                                                                         0.0364583,
                                                                     35.0,
                                                                   ),
                                                                   clipBehavior:
-                                                                      Clip.antiAlias,
+                                                                  Clip.antiAlias,
                                                                   decoration:
-                                                                      const BoxDecoration(
+                                                                  BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -1272,16 +1252,16 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                                 ),
                                                                 Column(
                                                                   mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  MainAxisSize
+                                                                      .max,
                                                                   crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                                   children: [
                                                                     Row(
                                                                       mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
+                                                                      MainAxisSize
+                                                                          .max,
                                                                       children: [
                                                                         Text(
                                                                           valueOrDefault<
@@ -1292,110 +1272,110 @@ class _SeleccionarCuentaWidgetState extends State<SeleccionarCuentaWidget> {
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
-                                                                                fontFamily: 'Readex Pro',
-                                                                                fontSize: valueOrDefault<double>(
-                                                                                  MediaQuery.sizeOf(context).height * 0.015625,
-                                                                                  15.0,
-                                                                                ),
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
+                                                                            fontFamily: 'Readex Pro',
+                                                                            fontSize: valueOrDefault<double>(
+                                                                              MediaQuery.sizeOf(context).height * 0.015625,
+                                                                              15.0,
+                                                                            ),
+                                                                            letterSpacing: 0,
+                                                                            fontWeight: FontWeight.bold,
+                                                                          ),
                                                                         ),
                                                                       ].divide(SizedBox(
                                                                           width: valueOrDefault<double>(
-                                                                        MediaQuery.sizeOf(context).width *
-                                                                            0.02433,
-                                                                        10.0,
-                                                                      ))),
+                                                                            MediaQuery.sizeOf(context).width *
+                                                                                0.02433,
+                                                                            10.0,
+                                                                          ))),
                                                                     ),
                                                                     if (datosCuentasNegocioItem.tipoNegocio !=
-                                                                            null &&
+                                                                        null &&
                                                                         datosCuentasNegocioItem.tipoNegocio !=
                                                                             '')
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
+                                                                            0,
                                                                             valueOrDefault<double>(
                                                                               MediaQuery.sizeOf(context).height * 0.0052083,
                                                                               5.0,
                                                                             ),
-                                                                            0.0,
-                                                                            0.0),
+                                                                            0,
+                                                                            0),
                                                                         child:
-                                                                            Row(
+                                                                        Row(
                                                                           mainAxisSize:
-                                                                              MainAxisSize.max,
+                                                                          MainAxisSize.max,
                                                                           children: [
                                                                             Text(
                                                                               FFLocalizations.of(context).getText(
                                                                                 'd0mjuili' /* Tipo: */,
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Readex Pro',
-                                                                                    fontSize: valueOrDefault<double>(
-                                                                                      MediaQuery.sizeOf(context).height * 0.0125,
-                                                                                      12.0,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                  ),
+                                                                                fontFamily: 'Readex Pro',
+                                                                                fontSize: valueOrDefault<double>(
+                                                                                  MediaQuery.sizeOf(context).height * 0.0125,
+                                                                                  12.0,
+                                                                                ),
+                                                                                letterSpacing: 0,
+                                                                                fontWeight: FontWeight.w600,
+                                                                              ),
                                                                             ),
                                                                             Text(
                                                                               datosCuentasNegocioItem.tipoNegocio != null && datosCuentasNegocioItem.tipoNegocio != ''
                                                                                   ? valueOrDefault<String>(
-                                                                                      datosCuentasNegocioItem.tipoNegocio,
-                                                                                      'Desconocido',
-                                                                                    )
+                                                                                datosCuentasNegocioItem.tipoNegocio,
+                                                                                'Desconocido',
+                                                                              )
                                                                                   : '',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Readex Pro',
-                                                                                    fontSize: valueOrDefault<double>(
-                                                                                      MediaQuery.sizeOf(context).height * 0.0125,
-                                                                                      12.0,
-                                                                                    ),
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
+                                                                                fontFamily: 'Readex Pro',
+                                                                                fontSize: valueOrDefault<double>(
+                                                                                  MediaQuery.sizeOf(context).height * 0.0125,
+                                                                                  12.0,
+                                                                                ),
+                                                                                letterSpacing: 0,
+                                                                              ),
                                                                             ),
                                                                           ].divide(SizedBox(
                                                                               width: valueOrDefault<double>(
-                                                                            MediaQuery.sizeOf(context).width *
-                                                                                0.012165,
-                                                                            5.0,
-                                                                          ))),
+                                                                                MediaQuery.sizeOf(context).width *
+                                                                                    0.012165,
+                                                                                5.0,
+                                                                              ))),
                                                                         ),
                                                                       ),
                                                                     if (datosCuentasNegocioItem.ubicacion !=
-                                                                            null &&
+                                                                        null &&
                                                                         datosCuentasNegocioItem.ubicacion !=
                                                                             '')
                                                                       Text(
                                                                         datosCuentasNegocioItem.ubicacion != null &&
-                                                                                datosCuentasNegocioItem.ubicacion != ''
+                                                                            datosCuentasNegocioItem.ubicacion != ''
                                                                             ? functions.formatearDireccionNegocio(datosCuentasNegocioItem.ubicacion!)
                                                                             : '',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Readex Pro',
-                                                                              fontSize: valueOrDefault<double>(
-                                                                                MediaQuery.sizeOf(context).height * 0.0125,
-                                                                                12.0,
-                                                                              ),
-                                                                              letterSpacing: 0.0,
-                                                                            ),
+                                                                          fontFamily: 'Readex Pro',
+                                                                          fontSize: valueOrDefault<double>(
+                                                                            MediaQuery.sizeOf(context).height * 0.0125,
+                                                                            12.0,
+                                                                          ),
+                                                                          letterSpacing: 0,
+                                                                        ),
                                                                       ),
                                                                   ],
                                                                 ),
                                                               ].divide(SizedBox(
                                                                   width:
-                                                                      valueOrDefault<
-                                                                          double>(
-                                                                MediaQuery.sizeOf(
-                                                                            context)
+                                                                  valueOrDefault<
+                                                                      double>(
+                                                                    MediaQuery.sizeOf(
+                                                                        context)
                                                                         .width *
-                                                                    0.0364963,
-                                                                15.0,
-                                                              ))),
+                                                                        0.0364963,
+                                                                    15.0,
+                                                                  ))),
                                                             ),
                                                           ],
                                                         ),
